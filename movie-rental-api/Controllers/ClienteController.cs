@@ -53,13 +53,15 @@ namespace movie_rental_api.Controllers
         }
 
         //Deletar registro    
-        [HttpPost]
+        [HttpDelete]
         [Route("DeletarCliente/{Id}")]
-        public void DeletarCliente(int Id)
+        public IActionResult DeletarCliente([FromRoute]int Id)
+
         {
             var del = _context.Clientes.FirstOrDefault(d => d.Id == Id);
             _context.Clientes.Remove(del);
             _context.SaveChanges();
+            return NoContent();
         }
 
         //Editar Telefone
